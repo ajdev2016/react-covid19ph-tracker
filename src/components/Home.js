@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Button } from 'reactstrap';
+// import CovidStatus from  'CovidStatus'
+import CovidStatus from './CovidStatus'
 
 export class Home extends Component {
     render() {
         return (
             <div>
-                <Button color="primary">test button</Button>{' '}
+                <CovidStatus />
             </div>
         )
     }
