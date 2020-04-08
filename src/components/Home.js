@@ -3,7 +3,7 @@ import axios from "axios";
 
 export class Home extends Component {
     
-    constructor(props) {
+    constructor(props) { 
         super(props)
     
         this.state = {
@@ -27,7 +27,7 @@ export class Home extends Component {
         console.log({covid_data})
         return (
             <div>
-                
+
             </div>
         )
     }
