@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
+// import CovidStatus from  'CovidStatus'
+import CovidStatus from './CovidStatus'
 
 export class Home extends Component {
     
@@ -27,7 +29,7 @@ export class Home extends Component {
         console.log({covid_data})
         return (
             <div>
-
+                <CovidStatus />
             </div>
         )
     }
