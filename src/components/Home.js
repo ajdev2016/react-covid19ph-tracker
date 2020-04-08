@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 import axios from "axios";
 import CovidStatus from './CovidStatus'
 import Search from './Search'
@@ -51,12 +51,10 @@ export class Home extends Component {
         
         return (
             <Container>
-                <Row>
+
                     { !this.state.isLoading && <Search sortListHandler={this.sortList} /> }  
-                </Row>
-                <Row>
+
                     <CovidStatus />
-                </Row>
                 <Row>
                     { this.state.isLoading && <p>Loading data...</p> }
                     { !this.state.isLoading && <ul> {this.renderList()} </ul>} 
