@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Container, Row, Col } from 'reactstrap';
 import axios from "axios";
 import CovidStatus from './CovidStatus'
+import Search from './Search'
 
 export class Home extends Component {
     
@@ -34,12 +35,25 @@ export class Home extends Component {
         return this.state.covid_data.map( (data,index) => ( <li key={index} >{data.case_no} - {data.nationality} - {data.status}</li> ))
     }
 
+    sortList = () => {
+        const list =  this.state.covid_data.filter( data => ( data.age <= 30 ))
+
+        this.setState({
+            covid_data: list,
+            isLoading: false
+        })
+
+    }
+
     render() {
         const {covid_data} = this.state
         console.log({covid_data})
         
         return (
             <Container>
+                <Row>
+                    { !this.state.isLoading && <Search sortListHandler={this.sortList} /> }  
+                </Row>
                 <Row>
                     <CovidStatus />
                 </Row>
