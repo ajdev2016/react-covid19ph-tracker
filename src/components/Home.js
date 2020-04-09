@@ -57,12 +57,28 @@ export class Home extends Component {
         console.log({covid_data})
 
         const headerTitle = {
-            fontSize: "3.5rem",
+            fontSize: "2.5rem",
             fontWeight: "300",
             lineHeight: "1.2",
             textAlign: "center",
-            marginBottom: "30px"
+            marginBottom: "5px"
         }
+
+        const headerTotal = {
+            fontSize: "3.5rem",
+            fontWeight: "600",
+            textAlign: "center",
+            margin: "20px 0 30px"
+        }
+
+        // const headerDate = {
+        //     fontSize: "0.8rem",
+        //     fontWeight: "500",
+        //     textAlign: "center",
+        //     marginBottom: "20px",
+        //     fontStyle: "italic",
+        //     color: "#777"
+        // }
 
         const mt30 = {
             marginTop: "30px",
@@ -76,7 +92,9 @@ export class Home extends Component {
             <Container style={mt100}>
 
                 <Jumbotron style={mt30}>
-                    <h1 style={headerTitle}>Total Cases in Philippines</h1>
+                    <h1 style={headerTitle}>Total COVID-19 Updates in the Philippines</h1>
+                    <h2 style={headerTotal}>0000</h2>
+                    {/* <h3 style={headerDate}>as of 1/2/2020 2:00pm</h3> */}
                     <CovidStatus />
                     <Search search={search} sortListHandler={this.sortList} handleChange={this.handleChange} />
                 </Jumbotron>
