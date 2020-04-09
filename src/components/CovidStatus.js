@@ -3,9 +3,9 @@ import {Card, CardTitle, CardText, CardColumns, Jumbotron } from 'reactstrap';
 
 export class CovidStatus extends Component {
     render() {
-        const cardCont = {
-            margin: "30px"
-        }
+        // const cardCont = {
+        //     margin: "30px"
+        // }
         const cardBodyc = {
             backgroundColor: "#DB6623"
           };
@@ -23,17 +23,11 @@ export class CovidStatus extends Component {
           const cardText = {
               fontSize: "50px"
           }
-          const headerTitle = {
-            fontSize: "3.5rem",
-            fontWeight: "300",
-            lineHeight: "1.2",
-            textAlign: "center"
-          }
+         
         return (
             <div>
-            <Jumbotron fluid>
-                <h1 style={headerTitle}>Total Cases in Philippines</h1>
-                <CardColumns style={cardCont}>
+            
+                <CardColumns /*style={cardCont}*/>
                     <Card body inverse style={cardBodyc}>
                         <CardTitle style={cardTitle}>CONFIRMED</CardTitle>
                         <CardText style={cardText}>000</CardText>   
@@ -49,7 +43,7 @@ export class CovidStatus extends Component {
                         <CardText style={cardText}>000</CardText>
                     </Card>
                 </CardColumns>
-            </Jumbotron>
+            
           </div>
         )
     }

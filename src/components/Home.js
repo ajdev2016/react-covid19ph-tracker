@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row } from 'reactstrap';
+import { Container, Row, Jumbotron } from 'reactstrap';
 import axios from "axios";
 import CovidStatus from './CovidStatus'
 import Search from './Search'
@@ -48,13 +48,32 @@ export class Home extends Component {
     render() {
         const {covid_data} = this.state
         console.log({covid_data})
+
+        const headerTitle = {
+            fontSize: "3.5rem",
+            fontWeight: "300",
+            lineHeight: "1.2",
+            textAlign: "center",
+            marginBottom: "30px"
+        }
+
+        const mt30 = {
+            marginTop: "30px",
+        }
+
+        const mt100 = {
+            marginTop: "100px",
+        }
         
         return (
-            <Container>
+            <Container style={mt100}>
 
-                    { !this.state.isLoading && <Search sortListHandler={this.sortList} /> }  
-
+                <Jumbotron style={mt30}>
+                    <h1 style={headerTitle}>Total Cases in Philippines</h1>
                     <CovidStatus />
+                    <Search sortListHandler={this.sortList} />
+                </Jumbotron>
+                
                 <Row>
                     { this.state.isLoading && <p>Loading data...</p> }
                     { !this.state.isLoading && <ul> {this.renderList()} </ul>} 
