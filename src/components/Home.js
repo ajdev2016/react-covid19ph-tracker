@@ -12,6 +12,7 @@ export class Home extends Component {
         this.state = {
             covid_data: null,
             search: '',
+            filtered: null,
             isLoading: true    
         }
 
@@ -24,7 +25,8 @@ export class Home extends Component {
             // console.log({response});
             this.setState({
                 covid_data: response.data,
-                isLoading: false
+                isLoading: false,
+                filtered: response.data
             })
         })
         .catch((e) => {
@@ -33,28 +35,27 @@ export class Home extends Component {
     }
 
     renderList = () => {
-        return this.state.covid_data.map( (data,index) => ( <li key={index} >{data.case_no} - {data.nationality} - {data.status}</li> ))
+        return this.state.filtered.map( (data,index) => ( <li key={index} >{data.gender} - {data.hospital_admitted_to} - {data.resident_of} - {data.status}</li> ))
     }
 
     sortList = () => {
         const {covid_data, search} = this.state
+        // console.log(covid_data)
 
-        console.log(search)
+        const filteredList =  covid_data.filter(data => data.hospital_admitted_to.toLowerCase().indexOf( search.toLowerCase() ) > -1 || data.resident_of.toLowerCase().indexOf( search.toLowerCase() ) > -1 );
 
-        const list =  covid_data.filter( data => ( data.age <= 30 ))
-
-        this.setState({
-            covid_data: list,
+        this.setState( {
+            filtered: filteredList,
+            search: search,
             isLoading: false
         })
-
     }
 
     handleChange = (e) => this.setState({[e.target.name]:e.target.value})
 
     render() {
-        const {covid_data, search} = this.state
-        console.log({covid_data})
+        const {search} = this.state
+        // console.log({covid_data})
 
         const headerTitle = {
             fontSize: "3.5rem",
@@ -83,7 +84,7 @@ export class Home extends Component {
                 
                 <Row>
                     { this.state.isLoading && <p>Loading data...</p> }
-                    { !this.state.isLoading && <ul> {this.renderList()} </ul>} 
+                    { !this.state.isLoading && <ol> {this.renderList()} </ol>} 
                 </Row>
             </Container>
         )
