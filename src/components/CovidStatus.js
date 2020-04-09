@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Card, CardTitle, CardText, CardColumns, Jumbotron } from 'reactstrap';
+import {Card, CardTitle, CardText, CardColumns } from 'reactstrap';
 
 export class CovidStatus extends Component {
     render() {

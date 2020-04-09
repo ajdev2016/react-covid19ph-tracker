@@ -11,6 +11,7 @@ export class Home extends Component {
     
         this.state = {
             covid_data: null,
+            search: '',
             isLoading: true    
         }
 
@@ -36,7 +37,11 @@ export class Home extends Component {
     }
 
     sortList = () => {
-        const list =  this.state.covid_data.filter( data => ( data.age <= 30 ))
+        const {covid_data, search} = this.state
+
+        console.log(search)
+
+        const list =  covid_data.filter( data => ( data.age <= 30 ))
 
         this.setState({
             covid_data: list,
@@ -45,8 +50,10 @@ export class Home extends Component {
 
     }
 
+    handleChange = (e) => this.setState({[e.target.name]:e.target.value})
+
     render() {
-        const {covid_data} = this.state
+        const {covid_data, search} = this.state
         console.log({covid_data})
 
         const headerTitle = {
@@ -71,7 +78,7 @@ export class Home extends Component {
                 <Jumbotron style={mt30}>
                     <h1 style={headerTitle}>Total Cases in Philippines</h1>
                     <CovidStatus />
-                    <Search sortListHandler={this.sortList} />
+                    <Search search={search} sortListHandler={this.sortList} handleChange={this.handleChange} />
                 </Jumbotron>
                 
                 <Row>
