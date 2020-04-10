@@ -23,25 +23,32 @@ export class CovidStatus extends Component {
           const cardText = {
               fontSize: "50px"
           }
-         
+
+
+        
+        const { total_confirmed, total_recovered, total_deaths} = this.props
+
+
         return (
             <div>
             
                 <CardColumns /*style={cardCont}*/>
                     <Card body inverse style={cardBodyc}>
                         <CardTitle style={cardTitle}>CONFIRMED</CardTitle>
-                        <CardText style={cardText}>000</CardText>   
-                    </Card>
-
-                    <Card body inverse style={cardBodyd}>
-                        <CardTitle style={cardTitle}>DEATHS</CardTitle>
-                        <CardText style={cardText}>000</CardText>        
+                        <CardText style={cardText}>{total_confirmed}</CardText>   
                     </Card>
 
                     <Card body inverse style={cardBodyr}>
                         <CardTitle style={cardTitle}>RECOVERED</CardTitle>
-                        <CardText style={cardText}>000</CardText>
+                        <CardText style={cardText}>{total_recovered}</CardText>
                     </Card>
+
+                    <Card body inverse style={cardBodyd}>
+                        <CardTitle style={cardTitle}>DEATHS</CardTitle>
+                        <CardText style={cardText}>{total_deaths}</CardText>        
+                    </Card>
+
+                    
                 </CardColumns>
             
           </div>
