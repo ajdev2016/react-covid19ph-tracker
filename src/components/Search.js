@@ -42,7 +42,7 @@ export class Search extends Component {
         const {locations, search} = this.state
         // console.log(search)
         return locations.filter( company => ( company.toLowerCase().indexOf( search.toLowerCase() ) > -1))
-                        .map( (location,index) => ( <li key={index} onClick={() => this.chooseLocation(location)}>{location}</li> ))         
+                        .map( (location,index) => ( <li key={index} style={{ listStyleType: "none", cursor: "pointer",  backgroundColor:"#fff", borderBottom:"1px solid #ccc", padding:"3px 5px" }} onClick={() => this.chooseLocation(location)}>{location}</li> ))         
     }
 
     chooseLocation = (location) => {
@@ -62,7 +62,7 @@ export class Search extends Component {
                     <Input name="search" onChange={handleChange} onKeyUp={ this.lookUpLocation.bind(this) } value={search} autoComplete="off"  placeholder="search region, city, hospital etc..." />
                     {/* <InputGroupAddon addonType="append"><Button onClick={ () => sortListHandler() }>Search</Button></InputGroupAddon> */}
                 </InputGroup>
-                <ul>
+                <ul style={{ paddingLeft: "0px" }}>
                     {!this.state.isLoading && this.renderLookUpLocation()}
                 </ul>
            </>
