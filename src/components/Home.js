@@ -23,13 +23,13 @@ export class Home extends Component {
         // this.renderList = this.renderList.bind(this)
     }
 
-    componentDidMount() {
+    componentWillMount() {
         axios.get('https://coronavirus-ph-api.herokuapp.com/cases')
         .then( response => {
             // console.log(response.data);   
 
             const allTotals = this.getAllTotals(response.data, response.data)
-            console.log(allTotals)
+            // console.log(allTotals)
 
             this.setState({
                 covid_data: response.data,
@@ -68,7 +68,7 @@ export class Home extends Component {
         })
 
         allTotal = {total_cases: total_cases, total_confirmed: total_confirmed, total_recovered: total_recovered, total_deaths: total_deaths }
-        console.log(allTotal)
+        // console.log(allTotal)
         return allTotal
     }
 
@@ -116,15 +116,6 @@ export class Home extends Component {
             margin: "20px 0 30px"
         }
 
-        // const headerDate = {
-        //     fontSize: "0.8rem",
-        //     fontWeight: "500",
-        //     textAlign: "center",
-        //     marginBottom: "20px",
-        //     fontStyle: "italic",
-        //     color: "#777"
-        // }
-
         const mt30 = {
             marginTop: "30px",
         }
@@ -133,7 +124,7 @@ export class Home extends Component {
             marginTop: "100px",
         }
 
-        const { search, total_cases, total_confirmed, total_recovered, total_deaths } = this.state
+        const { search, covid_data, total_cases, total_confirmed, total_recovered, total_deaths } = this.state
         // console.log({covid_data})
         
         return (
@@ -141,17 +132,15 @@ export class Home extends Component {
 
                 <Jumbotron style={mt30}>
                     <h1 style={headerTitle}>Total COVID-19 Updates in the Philippines</h1>
-                    <h2 style={headerTotal}>{ !this.state.isLoading && total_cases }</h2>
-                    {/* <h3 style={headerDate}>as of 1/2/2020 2:00pm</h3> */}
-                    {/* <CovidStatus allTotal={ !this.state.isLoading && this.state } /> */}
-                    { !this.state.isLoading && <CovidStatus total_confirmed={total_confirmed} total_recovered={total_recovered} total_deaths={total_deaths} />  }
-                    <Search search={search} sortListHandler={this.sortList} handleChange={this.handleChange} />
+                    <h2 style={headerTotal}>{ total_cases }</h2>
+                    <CovidStatus total_confirmed={total_confirmed} total_recovered={total_recovered} total_deaths={total_deaths} /> 
+                    <Search covid_data={covid_data} search={search} sortListHandler={this.sortList} handleChange={this.handleChange} />
                 </Jumbotron>
                 
-                {/* <Row>
+                <Row>
                     { this.state.isLoading && <p>Loading data...</p> }
-                    { !this.state.isLoading && <ol> {this.renderList()} </ol>} 
-                </Row> */}
+                    { !this.state.isLoading && <ol> {this.renderList()} </ol> } 
+                </Row>
             </Container>
         )
     }
