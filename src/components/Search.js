@@ -14,7 +14,7 @@ export class Search extends Component {
             <>
                 {/* <button onClick={ () => this.props.sortListHandler() }>sort</button> */}
                 <InputGroup /*style={searchCont}*/>
-                    <Input name="search" onChange={handleChange} value={search} placeholder="search region, city, hospital etc..." />
+                    <Input name="search" onChange={handleChange} value={search} autoComplete="off" placeholder="search region, city, hospital etc..." />
                     <InputGroupAddon addonType="append"><Button onClick={ () => sortListHandler() }>Search</Button></InputGroupAddon>
                 </InputGroup>
            </>
