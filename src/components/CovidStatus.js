@@ -24,14 +24,10 @@ export class CovidStatus extends Component {
               fontSize: "50px"
           }
 
-
-        
         const { total_confirmed, total_recovered, total_deaths} = this.props
 
-
         return (
-            <div>
-            
+            <>
                 <CardColumns /*style={cardCont}*/>
                     <Card body inverse style={cardBodyc}>
                         <CardTitle style={cardTitle}>CONFIRMED</CardTitle>
@@ -46,12 +42,9 @@ export class CovidStatus extends Component {
                     <Card body inverse style={cardBodyd}>
                         <CardTitle style={cardTitle}>DEATHS</CardTitle>
                         <CardText style={cardText}>{total_deaths}</CardText>        
-                    </Card>
-
-                    
+                    </Card> 
                 </CardColumns>
-            
-          </div>
+          </>
         )
     }
 }

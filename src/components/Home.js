@@ -76,19 +76,19 @@ export class Home extends Component {
         return this.state.filtered.map( (data,index) => ( <li key={index} >{data.gender} - {data.hospital_admitted_to} - {data.resident_of} - {data.status}</li> ))
     }
 
-    sortList = () => {
-        const {covid_data, search} = this.state
+    sortList = (location) => {
+        const {covid_data} = this.state
         // console.log(covid_data)
 
         const filteredList =  covid_data.filter(data => 
-                                data.hospital_admitted_to.toLowerCase().indexOf( search.toLowerCase() ) > -1 
-                                || data.resident_of.toLowerCase().indexOf( search.toLowerCase() ) > -1 );
+                                data.hospital_admitted_to.toLowerCase().indexOf( location.toLowerCase() ) > -1 
+                                || data.resident_of.toLowerCase().indexOf( location.toLowerCase() ) > -1 );
 
         const allTotals = this.getAllTotals(covid_data, filteredList)
 
         this.setState( {
             filtered: filteredList,
-            search: search,
+            search: location,
             isLoading: false,
             total_cases: allTotals.total_cases,
             total_confirmed: allTotals.total_confirmed,
@@ -97,7 +97,14 @@ export class Home extends Component {
         })
     }
 
-    handleChange = (e) => this.setState({[e.target.name]:e.target.value})
+    handleChange = (e) => {
+        // console.log(e.target.value)
+        this.setState({[e.target.name]:e.target.value})
+    }
+
+    fook = (location) => {
+        this.setState({search:location})
+    }
 
     render() {
 
@@ -134,13 +141,13 @@ export class Home extends Component {
                     <h1 style={headerTitle}>Total COVID-19 Updates in the Philippines</h1>
                     <h2 style={headerTotal}>{ total_cases }</h2>
                     <CovidStatus total_confirmed={total_confirmed} total_recovered={total_recovered} total_deaths={total_deaths} /> 
-                    <Search covid_data={covid_data} search={search} sortListHandler={this.sortList} handleChange={this.handleChange} />
+                    <Search fook={this.fook} covid_data={covid_data} search={search} sortListHandler={this.sortList} handleChange={this.handleChange} />
                 </Jumbotron>
                 
-                <Row>
+                {/* <Row>
                     { this.state.isLoading && <p>Loading data...</p> }
                     { !this.state.isLoading && <ol> {this.renderList()} </ol> } 
-                </Row>
+                </Row> */}
             </Container>
         )
     }
